@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Affairs from './Affairs'
 
 // types
-export type AffairPriorityType =  'low' | 'high' | 'middle' | 'all'
+export type AffairPriorityType = 'low' | 'high' | 'middle' | 'all'
 export type AffairType = {
     _id: number,
     name: string,
@@ -19,9 +19,9 @@ const defaultAffairs: Array<AffairType> = [
     {_id: 5, name: 'html & css', priority: 'middle'},
 ]
 
-export const filterAffairs = (affairs: Array<AffairType>, filter: AffairPriorityType): any => { // need to fix any
-    if (filter === 'all') return affairs
-    if (filter === 'low') return affairs
+export const filterAffairs = (affairs: Array<AffairType>, filter: AffairPriorityType): Array<AffairType> => {
+    if (filter === 'all') return affairs;
+    return affairs.filter((item: AffairType) => item.priority === filter)
 }
 export const deleteAffair = (affairs: Array<AffairType>, _id: number): Array<AffairType> => {
     return affairs.filter((item: any) => item._id !== _id)
@@ -32,6 +32,7 @@ function HW2() {
     const [filter, setFilter] = useState<FilterType>('all')
 
     const filteredAffairs = filterAffairs(affairs, filter)
+
     const deleteAffairCallback = (_id: number) => setAffairs(deleteAffair(affairs, _id))
 
     return (
