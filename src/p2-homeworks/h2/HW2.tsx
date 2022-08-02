@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Affairs from './Affairs'
 
 // types
-export type AffairPriorityType = 'low' | 'high' | 'middle' | 'all'
+export type AffairPriorityType = 'low' | 'high' | 'middle'
 export type AffairType = {
     _id: number,
     name: string,
@@ -19,7 +19,7 @@ const defaultAffairs: Array<AffairType> = [
     {_id: 5, name: 'html & css', priority: 'middle'},
 ]
 
-export const filterAffairs = (affairs: Array<AffairType>, filter: AffairPriorityType): Array<AffairType> => {
+export const filterAffairs = (affairs: Array<AffairType>, filter: FilterType): Array<AffairType> => {
     if (filter === 'all') return affairs;
     return affairs.filter((item: AffairType) => item.priority === filter)
 }
@@ -38,6 +38,7 @@ function HW2() {
     return (
         <div>
             <hr/>
+            homeworks 2
             <Affairs
                 data={filteredAffairs}
                 setFilter={setFilter}

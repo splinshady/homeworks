@@ -1,7 +1,36 @@
-.someClass {
+.input_container {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+    align-items: center;
+    position: relative;
+    width: 400px;
+}
 
+.input {
+    outline: none;
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+.input:focus {
+    border: 1px solid #275657;
 }
 
 .error {
+    outline: none;
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
     border: 1px solid red;
+}
+.span_error {
+    color: red;
+    position: absolute;
+    font-size: 0.8em;
+    left: 6px;
+    top: -9px;
+    background-color: white;
+    padding: 0 4px;
 }

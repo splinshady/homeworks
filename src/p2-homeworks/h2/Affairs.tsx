@@ -1,10 +1,10 @@
 import React from 'react'
 import Affair from './Affair'
-import {AffairPriorityType, AffairType} from './HW2'
+import {AffairType, FilterType} from './HW2'
 
 type AffairsPropsType = {
     data: Array<AffairType>,
-    setFilter: (filter: AffairPriorityType) => void,
+    setFilter: (filter: FilterType) => void,
     deleteAffairCallback: (_id: number) => void,
 }
 
