@@ -1,7 +1,81 @@
-.default {
+.button {
+    list-style: none;
+    border: 0;
+    border-radius: 5px;
+    padding: 7px 15px;
+    margin: 5px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+}
 
+.button::after {
+    content: '';
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    left: 0;
+    filter: blur(10px);
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+.default {
+    background: white;
+    cursor: pointer;
+}
+
+.default:hover::after {
+    opacity: 0.7;
+}
+
+.default:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0);
+    color: white;
+}
+
+.default:hover {
+    background: linear-gradient(45deg, #56CCF2, #2F80ED);
+}
+
+.default::after {
+    background: linear-gradient(45deg, #56CCF2, #2F80ED);
 }
 
 .red {
-    background: red;
+    background: #ff4a4a;
+    color: white;
+    cursor: pointer;
 }
+
+.red:hover::after {
+    opacity: 0.7;
+}
+
+.red:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0);
+    color: white;
+}
+
+.red:hover {
+    background: linear-gradient(45deg, #e176ff, #ff2f2f);
+}
+
+.red::after {
+    background: linear-gradient(45deg,  #e176ff, #ff2f2f);
+}
+
+.disabled {
+    cursor: default;
+    background-color: #b9d7fc;
+}
+
+.disabled:hover {
+    background-color: #b9d7fc;
+}
+
+.disabled::after {
+    background-color: #b9d7fc;
+}
+

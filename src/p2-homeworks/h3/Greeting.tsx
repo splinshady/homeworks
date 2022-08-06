@@ -15,14 +15,15 @@ type GreetingPropsType = {
 const Greeting: React.FC<GreetingPropsType> = (
     {name, setNameCallback, addUser, error, totalUsers, users,inputEnterHandler}
 ) => {
-    const inputClass = error ? s.error : s.input
+    const inputClass = error ? s.error : ''
+    const errorMessageStyle = error ? s.span_error_on : s.span_error_off
     const usersList = users.map(user => <li key={user._id}>{user.name}</li>)
 
     return (
         <div>
             <div className={s.input_container}>
-                <input value={name} onChange={setNameCallback} onKeyDown={inputEnterHandler}  className={inputClass}/>
-                <span className={s.span_error}>{error}</span>
+                <input value={name} onChange={setNameCallback} onKeyDown={inputEnterHandler} className={`${s.input} ${inputClass}`}/>
+                <span className={`${s.span_error} ${errorMessageStyle}`}>{error}</span>
                 <button onClick={addUser}>add</button>
                 <span>{totalUsers}</span>
             </div>

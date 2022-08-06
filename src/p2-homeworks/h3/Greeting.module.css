@@ -14,17 +14,11 @@
     border: 1px solid #000000;
     border-radius: 5px;
 }
-.input:focus {
-    border: 1px solid #275657;
-}
 
 .error {
-    outline: none;
-    padding: 5px;
-    width: 200px;
-    border-radius: 5px;
     border: 1px solid red;
 }
+
 .span_error {
     color: red;
     position: absolute;
@@ -33,4 +27,14 @@
     top: -9px;
     background-color: white;
     padding: 0 4px;
+    transition: transform 0.2s;
 }
+
+.span_error_on {
+    transform: scale(1);
+}
+
+.span_error_off {
+    transform: scale(0);
+}
+

@@ -16,7 +16,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUser
             setError('')
             setName(e.currentTarget.value)
         } else {
-            setError('name is empty')
+            setError('name can\'t start with spase')
         }
     }
     const addUser = () => {
@@ -25,7 +25,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUser
             addUserCallback(name)
             setName('')
         } else {
-            setError('name is empty')
+            setError('name can\'t be empty')
         }
     }
     const inputEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
