@@ -6,7 +6,7 @@ import SuperCheckbox from './common/c3-SuperCheckbox/SuperCheckbox'
 
 function HW4() {
     const [text, setText] = useState<string>('')
-    const error = text ? '' : 'error'
+    const error = text ? '' : 'ERROR'
 
     const showAlert = () => {
         if (error) {

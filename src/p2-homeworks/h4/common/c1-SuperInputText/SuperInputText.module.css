@@ -18,9 +18,13 @@
 .span_error {
     color: red;
     position: absolute;
-    font-size: 0.8em;
-    left: 12px;
-    top: -4px;
-    background-color: white;
+    font-size: 0.6em;
+    left: 15px;
+    top: 1px;
+    background: linear-gradient(#F5F5F5, white);
+    line-height: 0.9em;
     padding: 0 4px;
+    border-right: 1px solid red;
+    border-left: 1px solid red;
+    text-align: center;
 }
