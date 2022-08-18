@@ -10,10 +10,12 @@ function Header() {
     }
 
     return (
-        <div className={`${style.navigation}`}>
-            <span onClick={onClickHandler} className={`${style.menu} ${active ? style.menu_active : ''}`}>
+        <div className={`${style.navigation}`}
+             onMouseEnter={onClickHandler}
+             onMouseLeave={onClickHandler}
+        >
+            <span className={`${style.menu} ${active ? style.menu_active : ''}`}></span>
 
-            </span>
             <div className={`${style.link_container}`}>
                 <div className={`${style.links}  ${active ? style.active : ''}`}>
                     <NavLink className={style.link} to={'pre-junior'}>pre-junior </NavLink>
