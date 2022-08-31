@@ -1,0 +1,11 @@
+.hw {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.editable_span {
+    color: #56ccf2;
+}
