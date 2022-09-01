@@ -5,7 +5,13 @@
     align-items: center;
 }
 
-
 .editable_span {
+    display: inline-block;
+    padding: 4px;
+    margin: 4px;
+    width: 200px;
+    border: 1px solid #000000;
+    border-radius: 5px;
     color: #56ccf2;
+    background-color: white;
 }
