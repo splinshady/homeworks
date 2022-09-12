@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.list_container {
+    width: 200px;
+}
+
+.list_item {
+    display: flex;
+    justify-content: space-between;
+}
