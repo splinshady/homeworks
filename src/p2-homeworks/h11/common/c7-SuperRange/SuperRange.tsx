@@ -1,43 +1,74 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
-import s from './SuperRange.module.css'
+import React, {useCallback, useEffect, useRef} from 'react'
+import style from './Range.module.css'
 
-// тип пропсов обычного инпута
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+export type SuperRangePropsType = {
+    value1: number
+    value2?: number
+    setValue1: (value: number) => void
+    setValue2?: (value: number) => void
+    id: string
+}
 
-// здесь мы говорим что у нашего инпута будут такие же пропсы как у обычного инпута
-// (чтоб не писать value: string, onChange: ...; они уже все описаны в DefaultInputPropsType)
-type SuperRangePropsType = DefaultInputPropsType & { // и + ещё пропсы которых нет в стандартном инпуте
-    onChangeRange?: (value: number) => void
-};
+const SuperRange: React.FC<SuperRangePropsType> = ({value1, setValue1, setValue2, ...props}) => {
+    const range = useRef<HTMLInputElement | null>(null);
+    let value2 = props.value2 ? props.value2 : 100;
 
-const SuperRange: React.FC<SuperRangePropsType> = (
-    {
-        type, // достаём и игнорируем чтоб нельзя было задать другой тип инпута
-        onChange, onChangeRange,
-        className,
+    // Set width of the range to decrease from the left side
+    useEffect(() => {
+        if (range.current) {
+            if (setValue2) {
+                range.current.style.left = `${value1}%`
+                range.current.style.width = `${value2 - value1}%`
+            } else {
+                range.current.style.left = `${0}%`
+            }
+        }
 
-        ...restProps// все остальные пропсы попадут в объект restProps
-    }
-) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(e) // сохраняем старую функциональность
 
-        onChangeRange && onChangeRange(+e.currentTarget.value)
-    }
+    }, [value2, value1]);
 
-    const finalRangeClassName = `${s.range} ${className ? className : ''}`
+    // Set width of the range to decrease from the right side
+    useEffect(() => {
+        if (range.current) {
+            if (setValue2) {
+                range.current.style.width = `${value2 - value1}%`
+            } else {
+                range.current.style.width = `${value1}%`
+            }
+        }
+    }, [value2, value1]);
 
     return (
-        <>
+        <div className={style.container}>
             <input
-                type={'range'}
-                onChange={onChangeCallback}
-                className={finalRangeClassName}
-
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
+                type="range"
+                min={'0'}
+                max={'100'}
+                value={value1}
+                onChange={(event) => {
+                    const value = Math.min(Number(event.target.value), value2)
+                    setValue1(value);
+                }}
+                className={`${style.thumb} ${style.thumb__left}`}
             />
-        </>
-    )
-}
+            {setValue2 && <input
+              type="range"
+              min={'0'}
+              max={'100'}
+              value={value2}
+              onChange={(event) => {
+                  const value = Math.max(Number(event.target.value), value1)
+                  setValue2(value);
+              }}
+              className={`${style.thumb} ${style.thumb__right}`}
+            />}
+
+            <div className={style.slider}>
+                <div className={style.slider__track}/>
+                <div ref={range} className={style.slider__range}/>
+            </div>
+        </div>
+    );
+};
 
 export default SuperRange
